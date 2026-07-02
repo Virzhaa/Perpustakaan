@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Datang di PerpustakaanKu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(135deg, #DCEBFF 0%, #F8F6FF 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        /* Bubble Decorator serupa dengan tema auth-body kamu */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(79, 125, 243, .08);
+            left: -150px;
+            bottom: -150px;
+            z-index: 1;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            background: rgba(184, 92, 246, .07);
+            top: -150px;
+            right: -150px;
+            z-index: 1;
+        }
+
+        .welcome-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(66, 86, 122, 0.12);
+            text-align: center;
+            max-width: 550px;
+            width: 100%;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .logo-area {
+            font-size: 3rem;
+            color: #4f46e5;
+            margin-bottom: 15px;
+        }
+
+        .logo-area i {
+            margin-right: 10px;
+        }
+
+        h1 {
+            color: #1e293b;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        .selection-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 15px;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .portal-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            border-radius: 16px;
+            border: 2px solid #e2e8f0;
+            background: #f8fafc;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .portal-btn i {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .portal-btn span {
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        /* Styling spesifik tombol siswa */
+        .btn-siswa {
+            color: #4f46e5;
+        }
+        .btn-siswa:hover {
+            border-color: #4f46e5;
+            background: rgba(79, 70, 229, 0.04);
+            transform: translateY(-4px);
+        }
+
+        /* Styling spesifik tombol admin */
+        .btn-admin {
+            color: #8b5cf6;
+        }
+        .btn-admin:hover {
+            border-color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.04);
+            transform: translateY(-4px);
+        }
+
+        .portal-btn:hover i {
+            transform: scale(1.15);
+        }
+
+        footer {
+            margin-top: 30px;
+            color: #94a3b8;
+            font-size: 13px;
+            z-index: 2;
+            text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            .button-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .welcome-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="welcome-card">
+        <div class="logo-area">
+            <i class="fa-solid fa-book-open"></i>
+        </div>
+        <h1>PerpustakaanKu</h1>
+        <p class="subtitle">Sistem Informasi Perpustakaan Digital Sekolah. Silakan pilih gerbang masuk portal Anda di bawah ini.</p>
+        
+        <div class="selection-title">Masuk Sebagai</div>
+        
+        <div class="button-grid">
+            <a href="loginSiswa.html" class="portal-btn btn-siswa">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Portal Siswa</span>
+            </a>
+            
+            <a href="loginAdmin.html" class="portal-btn btn-admin">
+                <i class="fa-solid fa-user-gear"></i>
+                <span>Portal Admin</span>
+            </a>
+        </div>
+    </div>
+
+    <footer>© 2026 Created : Al Hadits Ilham Akbar</footer>
+
+</body>
+</html>
