@@ -1,0 +1,276 @@
+<script>
+window.onload = function() {
+    if (localStorage.getItem('isLoggedIn') !== 'true') {
+        window.location.href = 'loginAdmin.html';
+    }
+};
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = 'loginAdmin.html';
+}
+</script>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - PerpustakaanKu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="admin-body">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <i class="fa-solid fa-bars toggle-sidebar" id="toggleSidebar"></i>
+            <div class="logo" onclick="switchPage('dashboard-home')">
+                <i class="fa-solid fa-book-open"></i>
+                <span>PerpustakaanKu</span>
+            </div>
+        </div>
+        <nav class="sidebar-menu">
+            <a onclick="switchPage('dashboard-home')" class="menu-item active" id="menu-dashboard-home">
+                <i class="fa-solid fa-chart-pie"></i> <span>Dashboard</span>
+            </a>
+            <a onclick="switchPage('buku-page')" class="menu-item" id="menu-buku-page">
+                <i class="fa-solid fa-book"></i> <span>Buku</span>
+            </a>
+            <a onclick="switchPage('anggota-page')" class="menu-item" id="menu-anggota-page">
+                <i class="fa-solid fa-users"></i> <span>Anggota</span>
+            </a>
+            <a onclick="switchPage('peminjaman-page')" class="menu-item" id="menu-peminjaman-page">
+                <i class="fa-solid fa-book-bookmark"></i> <span>Peminjaman Buku</span>
+            </a>
+            <a onclick="switchPage('pengembalian-page')" class="menu-item" id="menu-pengembalian-page">
+                <i class="fa-solid fa-rotate-left"></i> <span>Pengembalian Buku</span>
+            </a>
+            
+            <div class="menu-dropdown">
+                <a class="menu-item dropdown-toggle" id="reportDropdown">
+                    <i class="fa-solid fa-file-invoice"></i> <span>Laporan</span> 
+                    <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                </a>
+                <div class="sidebar-submenu" id="submenuContent">
+                    <a onclick="switchPage('laporan-peminjaman-page')" id="menu-laporan-peminjaman-page">Laporan Peminjaman</a>
+                    <a onclick="switchPage('laporan-pengembalian-page')" id="menu-laporan-pengembalian-page">Laporan Pengembalian</a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <div class="main-admin-content">
+        
+        <header class="admin-navbar">
+            <div class="navbar-left"></div>
+            <div class="profile-menu">
+                <button class="profile-btn" id="adminProfileBtn">
+                    <span class="admin-name">Admin</span>
+                    <i class="fa-solid fa-circle-user fa-lg"></i>
+                </button>
+                <div class="dropdown" id="adminDropdownMenu">
+                    <a href="#">Kelola Akun</a>
+                    <a onclick="window.location.href='loginAdmin.html'">Logout</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard-container">
+            
+            <div id="dashboard-home" class="pages-section active-page">
+                <h1 class="dashboard-title">Dashboard Admin</h1>
+                <section class="stat-cards-grid">
+                    <div class="stat-card" onclick="switchPage('buku-page')">
+                        <i class="fa-solid fa-book card-icon"></i>
+                        <p class="card-label">Ketersediaan Buku</p>
+                        <h2 class="card-value">5</h2>
+                    </div>
+                    <div class="stat-card" onclick="switchPage('peminjaman-page')">
+                        <i class="fa-solid fa-user-graduate card-icon" style="color: #10b981;"></i>
+                        <p class="card-label">Peminjaman Buku</p>
+                        <h2 class="card-value">5</h2>
+                    </div>
+                    <div class="stat-card" onclick="switchPage('pengembalian-page')">
+                        <i class="fa-solid fa-rotate-left card-icon" style="color: #8b5cf6;"></i>
+                        <p class="card-label">Pengembalian Buku</p>
+                        <h2 class="card-value">5</h2>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fa-solid fa-triangle-exclamation card-icon" style="color: #ef4444;"></i>
+                        <p class="card-label">Kerusakan / Hilang</p>
+                        <h2 class="card-value">0</h2>
+                    </div>
+                </section>
+
+                <section class="chart-section">
+                    <h3>Statistik Bulanan</h3>
+                    <div class="chart-container">
+                        <canvas id="monthlyChart"></canvas>
+                    </div>
+                </section>
+            </div>
+
+            <div id="buku-page" class="pages-section">
+                <h1 class="dashboard-title">Manajemen Buku</h1>
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3>Daftar Koleksi Buku</h3>
+                        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Tambah Buku</button>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kode Buku</th>
+                                    <th>Judul Buku</th>
+                                    <th>Kategori</th>
+                                    <th>Stok</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>BK-001</td><td>Laskar Pelangi</td><td>Novel</td><td>2</td></tr>
+                                <tr><td>2</td><td>BK-002</td><td>Bumi Manusia</td><td>Sejarah</td><td>1</td></tr>
+                                <tr><td>3</td><td>BK-003</td><td>Algoritma Pemrograman</td><td>Edukasi</td><td>2</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="anggota-page" class="pages-section">
+                <h1 class="dashboard-title">Manajemen Anggota</h1>
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3>Daftar Anggota Aktif</h3>
+                        <button class="btn btn-primary"><i class="fa-solid fa-user-plus"></i> Tambah Anggota</button>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>ID Anggota</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>AG-001</td><td>Ahmad Fauzi</td><td>ahmad@mail.com</td><td><span class="badge badge-success">Aktif</span></td></tr>
+                                <tr><td>2</td><td>AG-002</td><td>Siti Aminah</td><td>siti@mail.com</td><td><span class="badge badge-success">Aktif</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="peminjaman-page" class="pages-section">
+                <h1 class="dashboard-title">Peminjaman Buku</h1>
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3>Transaksi Peminjaman Berlangsung</h3>
+                        <button class="btn btn-primary"><i class="fa-solid fa-receipt"></i> Pinjam Baru</button>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>ID Pinjam</th>
+                                    <th>Nama Anggota</th>
+                                    <th>Judul Buku</th>
+                                    <th>Tanggal Pinjam</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>PJ-101</td><td>Ahmad Fauzi</td><td>Laskar Pelangi</td><td>2026-06-28</td><td><span class="badge badge-warning">Dipinjam</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="pengembalian-page" class="pages-section">
+                <h1 class="dashboard-title">Pengembalian Buku</h1>
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3>Log Transaksi Pengembalian</h3>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>ID Kembali</th>
+                                    <th>Nama Anggota</th>
+                                    <th>Judul Buku</th>
+                                    <th>Tanggal Kembali</th>
+                                    <th>Denda</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>KB-201</td><td>Siti Aminah</td><td>Bumi Manusia</td><td>2026-07-02</td><td>Rp 0</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="laporan-peminjaman-page" class="pages-section">
+                <h1 class="dashboard-title">Laporan Peminjaman</h1>
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3>Rekapitulasi Bulanan Peminjaman</h3>
+                        <button class="btn btn-secondary"><i class="fa-solid fa-file-pdf"></i> Export PDF</button>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Periode</th>
+                                    <th>Total Buku Dipinjam</th>
+                                    <th>Buku Terfavorit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Juni 2026</td><td>42 Transaksi</td><td>Novel Fiction</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="laporan-pengembalian-page" class="pages-section">
+                <h1 class="dashboard-title">Laporan Pengembalian</h1>
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3>Rekapitulasi Bulanan Pengembalian</h3>
+                        <button class="btn btn-secondary"><i class="fa-solid fa-file-excel"></i> Export Excel</button>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Periode</th>
+                                    <th>Total Buku Kembali</th>
+                                    <th>Tepat Waktu</th>
+                                    <th>Terlambat (Denda)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Juni 2026</td><td>40 Buku</td><td>36 Buku</td><td>4 Kasus</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="style.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Register Siswa</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-body">
+	<div class="registerWrapper">
+		<div class="registerPanel">
+			<h1><i class="fa-solid fa-book-open"></i>PerpustakaanKu</h1>
+			<h3>
+				Silahkan register akun terlebih dahulu
+			</h3>
+			<div class="registerField">
+				<i class="fa-solid fa-id-card"></i>
+				<input type="text" id="txtIdentity" placeholder="NISN">
+			</div>
+			<div class="registerField">
+				<i class="fa-solid fa-user"></i>
+				<input type="text" id="txtFullname" placeholder="Nama Lengkap">
+			</div>
+			<div class="registerField">
+				<i class="fa-solid fa-school"></i>
+				<input type="text" id="txtClass" placeholder="Kelas">
+			</div>
+			<div class="registerField">
+				<i class="fa-solid fa-lock"></i>
+				<input type="password" id="txtPassword" placeholder="Password">
+				<i class="fa-solid fa-eye btnShowPassword" id="passwordViewer"></i>
+			</div>
+			<div class="registerField">
+				<i class="fa-solid fa-lock"></i>
+				<input type="password" id="txtConfirm" placeholder="Confirm Password">
+				<i class="fa-solid fa-eye btnShowPassword" id="confirmViewer"></i>
+			</div>
+			<button id="btnRegisterUser">Register</button>
+			<p>Sudah punya akun?<a href="loginSiswa.html">Login</a></p>
+		</div>
+	</div>
+	<footer>© 2026 Created : AI Hadits Ilham Akbar</footer>
+	<script src="style.js"></script>
+</body>
+</html>

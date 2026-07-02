@@ -1,0 +1,313 @@
+<script>
+window.onload = function() {
+    if (localStorage.getItem('isLoggedIn') !== 'true') {
+        window.location.href = 'loginSiswa.html';
+    }
+};
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = 'loginSiswa.html';
+}
+</script>
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PerpustakaanKu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+        }
+        .nav-links a {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .nav-links a.active {
+            background: rgba(99, 102, 241, 0.08);
+            color: #4f46e5;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo" onclick="switchPage('dashboard')" style="cursor: pointer;">
+            <i class="fa-solid fa-book-open"></i>
+            <span>PerpustakaanKu</span>
+        </div>
+        <nav class="nav-links">
+            <a id="nav-dashboard" class="active" onclick="switchPage('dashboard')">Dashboard</a>
+            <a id="nav-ketersediaan" onclick="switchPage('ketersediaan')">Cek Ketersediaan</a>
+            <a id="nav-peminjaman" onclick="switchPage('peminjaman')">Peminjaman</a>
+            <a id="nav-pengembalian" onclick="switchPage('pengembalian')">Pengembalian</a>
+            <a id="nav-laporan" onclick="switchPage('laporan')">Laporan</a>
+        </nav>
+        <div class="profile-menu">
+            <button class="profile-btn" id="profileBtn">
+                <i class="fa-solid fa-circle-user"></i>
+            </button>
+            <div class="dropdown" id="dropdownMenu">
+                <a href="#">Kelola Akun</a>
+                <a onclick="window.location.href='loginSiswa.html'">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container page-section active" id="page-dashboard">
+        <section class="hero-card">
+            <div class="carousel-container">
+                <button class="carousel-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3" alt="Classic Grand Library">
+                </div>
+                <div class="carousel-slide" style="display: none;">
+                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3" alt="Aesthetic Books Stack">
+                </div>
+                <div class="carousel-slide" style="display: none;">
+                    <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3" alt="Modern Minimalist Study Area">
+                </div>
+
+                <button class="carousel-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <div class="hero-text">
+                <h1>Selamat Datang</h1>
+                <p>Temukan buku terbaik untukmu dan perluas cakrawala ilmumu hari ini.</p>
+            </div>
+        </section>
+
+        <section class="benefits-section">
+            <h2>Manfaat Membaca Buku</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c" alt="Menambah wawasan">
+                    </div>
+                    <p>Menambah wawasan</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74" alt="Melatih fokus">
+                    </div>
+                    <p>Melatih fokus</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8" alt="Menambah kosakata">
+                    </div>
+                    <p>Menambah kosakata</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773" alt="Mengurangi stres">
+                    </div>
+                    <p>Mengurangi stres</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1517842645767-c639042777db" alt="Berpikir kritis">
+                    </div>
+                    <p>Berpikir kritis</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="process-section">
+            <h2>Alur Peminjaman & Pengembalian Buku</h2>
+            <div class="process-container">
+                <div class="process-card">
+                    <i class="fa-solid fa-book-bookmark process-icon"></i>
+                    <h3>Pilih Buku</h3>
+                    <p>Pilih buku yang ingin dipinjam berdasarkan dari katalog yang tersedia.</p>
+                </div>
+                <div class="process-card">
+                    <i class="fa-solid fa-hand-holding-book process-icon"></i>
+                    <h3>Ambil Buku</h3>
+                    <p>Ambil buku yang sudah dipilih berdasarkan dari katalog.</p>
+                </div>
+                <div class="process-card">
+                    <i class="fa-solid fa-user-check process-icon"></i>
+                    <h3>Ajukan</h3>
+                    <p>Ajukan peminjaman buku melalui petugas perpustakaan.</p>
+                </div>
+                <div class="process-card">
+                    <i class="fa-solid fa-rotate-left process-icon"></i>
+                    <h3>Kembalikan</h3>
+                    <p>Kembalikan buku tepat waktu untuk menghindari denda.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="page-ketersediaan" class="container page-section">
+        <div class="card-panel">
+            <div class="content-header">
+                <h2>Cek Ketersediaan Buku</h2>
+                <p>Cari dan pastikan buku yang ingin kamu pinjam tersedia di rak.</p>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Masukkan judul buku, penulis, atau ISBN...">
+                <button class="btn-primary">Cari</button>
+            </div>
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Kode</th>
+                        <th>Judul Buku</th>
+                        <th>Penulis</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>B001</td>
+                        <td>Struktur Data & Algoritma Java</td>
+                        <td>Laksana Pemuda</td>
+                        <td><span class="badge badge-success">Tersedia</span></td>
+                    </tr>
+                    <tr>
+                        <td>B002</td>
+                        <td>Sistem Pendukung Keputusan (AHP)</td>
+                        <td>Prof. Dr. Ichsan</td>
+                        <td><span class="badge badge-danger">Dipinjam</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="page-peminjaman" class="container page-section">
+        <div class="card-panel" style="max-width: 600px; margin: 0 auto;">
+            <div class="content-header">
+                <h2>Formulir Peminjaman Buku</h2>
+                <p>Isi data di bawah ini untuk mengajukan peminjaman buku baru.</p>
+            </div>
+            <form onsubmit="event.preventDefault(); alert('Peminjaman Berhasil Diajukan!');">
+                <div style="margin-bottom: 20px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600;">Pilih Buku</label>
+                    <select>
+                        <option>B001 - Struktur Data & Algoritma Java</option>
+                        <option disabled>B002 - Sistem Pendukung Keputusan (AHP) - [Dipinjam]</option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:600;">Durasi Pinjam</label>
+                    <select>
+                        <option>3 Hari</option>
+                        <option>7 Hari</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Ajukan Peminjaman</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="page-pengembalian" class="container page-section">
+        <div class="card-panel">
+            <div class="content-header">
+                <h2>Pengembalian Buku</h2>
+                <p>Daftar buku yang sedang kamu pinjam. Klik kembalikan jika sudah selesai membaca.</p>
+            </div>
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Judul Buku</th>
+                        <th>Tanggal Pinjam</th>
+                        <th>Batas Pengembalian</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pemrograman Berorientasi Objek</td>
+                        <td>12/06/2026</td>
+                        <td>19/06/2026</td>
+                        <td><button class="btn-secondary" onclick="alert('Buku dikembalikan!')">Kembalikan</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="page-laporan" class="container page-section">
+        <div class="card-panel">
+            <div class="content-header">
+                <h2>Laporan Aktivitas Membaca</h2>
+                <p>Ringkasan historis aktivitas peminjaman buku kamu.</p>
+            </div>
+            <div class="report-stats">
+                <div class="stat-card">
+                    <h3>5</h3>
+                    <p>Total Dipinjam</p>
+                </div>
+                <div class="stat-card">
+                    <h3>4</h3>
+                    <p>Sudah Dikembalikan</p>
+                </div>
+                <div class="stat-card">
+                    <h3>1</h3>
+                    <p>Sedang Dibaca</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-column column-alamat">
+                <h4>Alamat</h4>
+                <div class="map-placeholder">
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=300&q=80" alt="Map">
+                    <div class="map-btn">Maps <i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </div>
+                <p class="address-text">Jl. Contoh Alamat No.123, Jakarta</p>
+            </div>
+
+            <div class="footer-column column-about">
+                <h4>Tentang Kami</h4>
+                <p>Website perpustakaan ini dibuat untuk memudahkan siswa dalam mencari, meminjam, dan mengembalikan
+                    buku secara online dengan sistem yang cepat, mudah, dan efisien.</p>
+            </div>
+
+            <div class="footer-column column-contact">
+                <h4>Kontak</h4>
+                <ul>
+                    <li><i class="fa-solid fa-phone"></i> Hubungi</li>
+                    <li><i class="fa-solid fa-envelope"></i> email@gmail.com</li>
+                    <li><i class="fa-solid fa-thumbs-up"></i> Sosial Media</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Created : Al Hadits Ilham Akbar</p>
+        </div>
+    </footer>
+
+    <script>
+        function switchPage(pageId) {
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => section.classList.remove('active'));
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            document.getElementById('page-' + pageId).classList.add('active');
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+        }
+    </script>
+    <script src="style.js"></script>
+</body>
+
+</html>

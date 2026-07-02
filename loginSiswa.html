@@ -1,0 +1,44 @@
+<script>
+function loginSuccess() {
+    localStorage.setItem('isLoggedIn', 'true');
+    window.location.href = 'dashboardSiswa.html';
+}
+window.onload = function() {
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+        window.location.href = 'dashboardSiswa.html';
+    }
+};
+</script>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login SIPRUS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-body">
+    <div class="container">
+        <div class="login-card">
+            <h1><i class="fa-solid fa-book-open"></i>PerpustakaanKu</h1>
+            <h3>Silahkan login terlebih dahulu ya</h3>
+            <div class="input-group">
+                <i class="fa-solid fa-id-card"></i>
+                <input type="text" placeholder="NISN" id="nisn">
+            </div>
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" placeholder="Password" id="password">
+                <i class="fa-solid fa-eye eye" id="togglePassword"></i>
+            </div>
+
+            <button id="btnSiswa" onclick="window.location.href='dashboardSiswa.html'">Login Siswa</button>
+            <p>Belum memiliki akun?<a href="registerSiswa.html">Daftar</a></p>
+        </div>
+    </div>
+    <footer>© 2026 Created : AI Hadits Ilham Akbar</footer>
+    <script src="style.js"></script>
+</body>
+</html>
